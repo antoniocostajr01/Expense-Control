@@ -1,4 +1,4 @@
-namespace ControleGastos.Api.Models;
+namespace ExpenseControl.Api.Models;
 
 public class Person
 {
