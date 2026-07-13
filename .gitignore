@@ -13,9 +13,4 @@ dist/
 
 NOTES.md
 
-.claude/
-.mcp.json
-.cursor/
-.aider*
-
 .DS_Store
