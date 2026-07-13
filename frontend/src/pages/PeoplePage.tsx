@@ -67,16 +67,36 @@ export function PeoplePage() {
         <button type="submit">Adicionar</button>
       </form>
 
-      {error && <p style={{ color: "crimson" }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
-      <ul>
-        {people.map((person) => (
-          <li key={person.id}>
-            {person.name} — {person.age} anos (id {person.id})
-            <button onClick={() => handleDelete(person.id)}>Excluir</button>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {people.map((person) => (
+            <tr key={person.id}>
+              <td>{person.id}</td>
+              <td>{person.name}</td>
+              <td>{person.age}</td>
+              <td>
+                <button
+                  type="button"
+                  className="danger"
+                  onClick={() => handleDelete(person.id)}
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 }

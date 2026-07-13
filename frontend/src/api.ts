@@ -11,6 +11,23 @@ export interface CreatePersonRequest {
   age: number;
 }
 
+export type TransactionType = "Expense" | "Income";
+
+export interface Transaction {
+  id: number;
+  description: string;
+  amount: number;
+  type: TransactionType;
+  personId: number;
+}
+
+export interface CreateTransactionRequest {
+  description: string;
+  amount: number;
+  type: TransactionType;
+  personId: number;
+}
+
 async function parseError(response: Response): Promise<string> {
   const body = await response.json().catch(() => null);
 
@@ -59,4 +76,59 @@ export async function deletePerson(id: number): Promise<void> {
   if (!response.ok) {
     throw new Error(await parseError(response));
   }
+}
+
+export async function getTransactions(): Promise<Transaction[]> {
+  const response = await fetch(`${BASE_URL}/transactions`);
+
+  if (!response.ok) {
+    throw new Error(await parseError(response));
+  }
+
+  return response.json();
+}
+
+export async function createTransaction(
+  data: CreateTransactionRequest,
+): Promise<Transaction> {
+  const response = await fetch(`${BASE_URL}/transactions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response));
+  }
+
+  return response.json();
+}
+
+export interface PersonTotals {
+  personId: number;
+  name: string;
+  totalIncome: number;
+  totalExpense: number;
+  balance: number;
+}
+
+export interface OverallTotals {
+  totalIncome: number;
+  totalExpense: number;
+  balance: number;
+}
+
+export interface TotalsResponse {
+  people: PersonTotals[];
+  overall: OverallTotals;
+}
+
+export async function getTotals(): Promise<TotalsResponse> {
+  const response = await fetch(`${BASE_URL}/totals`);
+
+  if (!response.ok) {
+    throw new Error(await parseError(response));
+  }
+
+  return response.json();
 }
