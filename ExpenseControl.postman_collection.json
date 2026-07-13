@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "ExpenseControl API",
-    "description": "Testes da API de Controle de Gastos Residenciais. Suba a API com `dotnet run --launch-profile http` (base http://localhost:5269) e rode esta coleção no Postman (individual ou via Collection Runner). Os ids são capturados automaticamente nas criações e reutilizados via variáveis.",
+    "description": "Testes da API de Controle de Gastos. Suba a API com `dotnet run --launch-profile http` (base http://localhost:5269) e rode esta coleção no Postman (individual ou via Collection Runner). Os ids são capturados automaticamente nas criações e reutilizados via variáveis.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
